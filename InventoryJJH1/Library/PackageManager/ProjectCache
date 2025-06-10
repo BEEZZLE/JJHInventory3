@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638851524074470231
-    m_Hash: 4060000706
+      ticks: 638851532523816865
+    m_Hash: 2315907030
   m_LockFileStatus:
     m_FilePath: C:/UnityInventory/JJHInventory3/InventoryJJH1/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638851524074515470
-    m_Hash: 2086894793
+      ticks: 638851532523816865
+    m_Hash: 338889685
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

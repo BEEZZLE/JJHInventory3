@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIMainMenu : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class UIMainMenu : MonoBehaviour
         levelText.text = "LV " + character.Level;
         hpBar.maxValue = character.MaxHP;
         hpBar.value = character.CurrentHP;
+    }
+
+    internal void SetCharacter(Character player)
+    {
+        throw new NotImplementedException();
     }
 
     private void Start()

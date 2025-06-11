@@ -4,31 +4,26 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public Character Player { get; private set; }
-
-    [SerializeField] private UIManager uiManager;
+    public Character player;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
+        if (Instance == null)
+            Instance = this;
 
-    private void Start()
-    {
         SetData();
     }
 
     private void SetData()
     {
-        Player = new Character("Chad", 10, 9, 12, "교단노예");
+        player = new Character("Chad", 10, 100, 20, 15, 5);
 
-        Player.AddItem(new Item("Sword", ItemType.Weapon, 10));
-        Player.AddItem(new Item("Shield", ItemType.Armor, 5));
-        Player.AddItem(new Item("Helmet", ItemType.Armor, 3));
+        player.AddItem(new Item("검 +10", ItemType.Weapon, 10, 0, 0, 0));
+        player.AddItem(new Item("방패", ItemType.Armor, 0, 10, 20, 0));
+        player.AddItem(new Item("장신구", ItemType.Accessory, 0, 0, 10, 5));
 
-        uiManager.MainMenu.SetData(Player);
-        uiManager.StatusUI.SetData(Player);
-        uiManager.InventoryUI.SetData(Player);
+        UIManager.Instance.MainMenu.SetCharacter(player);
+        UIManager.Instance.StatusUI.SetCharacter(player);
+        UIManager.Instance.InventoryUI.Init(player);
     }
 }

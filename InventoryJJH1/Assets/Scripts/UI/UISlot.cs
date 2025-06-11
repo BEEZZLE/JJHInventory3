@@ -1,38 +1,37 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UISlot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private Button equipButton;
 
-    private Item item;
-    private Character owner;
+    private Item itemData;
+    private Character character;
 
-    public void SetItem(Item newItem, Character character)
+    public void Init(Item item, Character player)
     {
-        item = newItem;
-        owner = character;
+        itemData = item;
+        character = player;
         RefreshUI();
 
         equipButton.onClick.RemoveAllListeners();
-        equipButton.onClick.AddListener(() => ToggleEquip());
+        equipButton.onClick.AddListener(() =>
+        {
+            if (character.EquippedItems.ContainsValue(itemData))
+                character.UnEquip(itemData);
+            else
+                character.Equip(itemData);
+
+            UIManager.Instance.InventoryUI.Refresh();
+            UIManager.Instance.StatusUI.SetCharacter(character);
+        });
     }
 
-    private void ToggleEquip()
+    public void RefreshUI()
     {
-        if (owner.EquippedWeapon == item || owner.EquippedArmor == item)
-            owner.UnEquip(item);
-        else
-            owner.Equip(item);
-
-        UIManager.Instance.StatusUI.SetData(owner);
-        UIManager.Instance.InventoryUI.SetData(owner);
-    }
-
-    private void RefreshUI()
-    {
-        itemNameText.text = item.Name;
+        string state = character.EquippedItems.ContainsValue(itemData) ? "(¿Â¬¯¡ﬂ)" : "";
+        itemNameText.text = $"{itemData.Name} {state}";
     }
 }

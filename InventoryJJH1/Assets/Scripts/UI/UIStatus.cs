@@ -1,22 +1,18 @@
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class UIStatus : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI attackText, defenseText, hpText, speedText;
-    [SerializeField] private GameObject backButton;
+    [SerializeField] private TextMeshProUGUI attackText;
+    [SerializeField] private TextMeshProUGUI defenseText;
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI speedText;
 
-    public void SetData(Character character)
+    public void SetCharacter(Character character)
     {
-        attackText.text = character.GetTotalAttack().ToString();
-        defenseText.text = character.GetTotalDefense().ToString();
-        hpText.text = character.CurrentHP.ToString();
-        speedText.text = character.GetTotalSpeed().ToString();
-    }
-
-    private void Start()
-    {
-        backButton.GetComponent<Button>().onClick.AddListener(() => UIManager.Instance.ShowMainMenu());
+        attackText.text = $"공격력: {character.TotalAttack}";
+        defenseText.text = $"방어력: {character.TotalDefense}";
+        hpText.text = $"체력: {character.TotalHP}";
+        speedText.text = $"속도: {character.TotalSpeed}";
     }
 }
